@@ -3,6 +3,7 @@ import { useState, useContext, useRef, useEffect } from "react";
 import { MeuContext } from "../Context/MeuContext";
 
 import pokebola from "../assets/imgs/pokebola.png";
+import interrogacao from "../assets/imgs/interrogacao.png";
 import shiny from "../assets/imgs/shiny_icon.png";
 
 function Sprite() {
@@ -38,17 +39,20 @@ function Sprite() {
     definirVolume();
   }, [volume, pokemon]);
 
-  const {mutado} = useContext(MeuContext);
+  const {animacoesAtivas} = useContext(MeuContext);
 
   return (
     <>
       <div className="sprite-wraper">
         {pokemon.id == null ? (
-          <img src={pokebola} alt="Sprite Pokebola" className="pokebola-img" />
+          <div className="sprite">
+            <img src={pokebola} alt="Sprite Pokebola" className={`pokebola-img ${animacoesAtivas.pokebolaAnimacao ? "animado" : ""}`} />
+            <img src={interrogacao} alt="Sprite Interrogação" className={`interrogacao-img ${animacoesAtivas.interrogacaoAnimacao ? "animado" : ""}`} />
+          </div>
         ) : (
           <div className="sprite">
             {sprAtual == "padrão" ? (
-              <img src={`${sprite}${pokemon.id}.png`} alt="Sprite Pokemon"></img>
+              <img className={`${animacoesAtivas.pokemonAnimacao ? "animado" : ""}`} src={`${sprite}${pokemon.id}.png`} alt="Sprite Pokemon"></img>
             ) : (
               <img src={`${spriteShiny}${pokemon.id}.png`} alt="Sprite Pokemon Shiny"></img>
             )}

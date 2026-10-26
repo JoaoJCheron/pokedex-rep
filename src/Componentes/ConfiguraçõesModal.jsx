@@ -25,38 +25,27 @@ function ConfiguracoesModal( {modalAberto} ) {
     definirIconeVolume();
   }, [volume]);
 
-  const {mutado, setMutado} = useContext(MeuContext);
-
-  const ligaDesligaVolume = () => {
-    
-  };
-
+  const {animacoesAtivas, setAnimacoesAtivas} = useContext(MeuContext);
   const pokebolaAnimacaoRef = useRef();
-  const pokemonAnimacaoRef = useRef();
-  const radioAnimacaoRef = useRef();
+  const interrogacaoAnimacaoRef = useRef();
 
-  const configurarAnimacoes = () => {
-    if(pokebolaAnimacaoRef.current){
-      console.log(pokebolaAnimacaoRef.current.checked);
-    };
+  const configurarAnimacoes = (animacao) => {
+    const animacaoSelecionada = animacao.current.name;
 
-    if(pokemonAnimacaoRef.current){
-
-    };
-
-    if(radioAnimacaoRef.current){
-
-    };
+    if(animacoesAtivas[animacaoSelecionada] == true){
+      setAnimacoesAtivas(a => ({...a, [animacaoSelecionada]: false}));
+    }else{
+      setAnimacoesAtivas(a => ({...a, [animacaoSelecionada]: true}));
+    }
+  
   };
-
-  configurarAnimacoes();
 
   return (
     <>
       <div className={`modal-wraper ${modalAberto ? "aberto" : ""}`}>
         <h2> Configurar volume do grito </h2>
         <div className="volume">
-          <i className={iconeVolume} onClick={() => ligaDesligaVolume()}></i>
+          <i className={iconeVolume}></i>
           <input
             type="range"
             name="volume"
@@ -74,15 +63,11 @@ function ConfiguracoesModal( {modalAberto} ) {
         <div className="animacoes">
           <div className="animacao">
             <label htmlFor="pokebola"> Pokebola: </label>
-            <input type="checkbox" name="pokebola" defaultChecked ref={pokebolaAnimacaoRef} />
+            <input type="checkbox" name="pokebolaAnimacao" defaultChecked ref={pokebolaAnimacaoRef} onClick={() => configurarAnimacoes(pokebolaAnimacaoRef)}/>
           </div>
           <div className="animacao">
-            <label htmlFor="pokemon"> Pokemon: </label>
-            <input type="checkbox" name="pokemon" defaultChecked ref={pokemonAnimacaoRef} />
-          </div>
-          <div className="animacao">
-            <label htmlFor="radio"> Rádio: </label>
-            <input type="checkbox" name="radio" defaultChecked ref={radioAnimacaoRef} />
+            <label htmlFor="pokemon"> Interrogação: </label>
+            <input type="checkbox" name="interrogacaoAnimacao" defaultChecked ref={interrogacaoAnimacaoRef} onClick={() => configurarAnimacoes(interrogacaoAnimacaoRef)}/>
           </div>
         </div>
       </div>

@@ -145,7 +145,7 @@ body {
 .animacoes {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
 }
 .animacao {
   width: fit-content;
@@ -155,8 +155,18 @@ body {
 
   font-size: 16px;
 }
-.animacao input{
+.animacao input {
+  width: 15px;
+  height: 15px;
+
+  appearance: none;
+  background-color: none;
+  border: 2px solid #385faa;
+  border-radius: 2px;
   cursor: pointer;
+}
+.animacao input:checked{
+  background-color: #ffca02;
 }
 
 /*--- POKEDEX ---*/
@@ -181,7 +191,7 @@ body {
 .pokedex-item p {
   font-size: 20px;
   font-weight: bold;
-  color: #ffca02;
+  color: #000;
 
   margin-left: 15px;
 }
@@ -272,8 +282,22 @@ body {
 .sprite-wraper .pokebola-img {
   width: 400px;
   height: 400px;
-
+}
+.sprite-wraper .pokebola-img.animado{
   animation-name: pokebola;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+.sprite-wraper .interrogacao-img{
+  width: 80px;
+  height: 120px;
+  position: absolute;
+  margin-top: -50px;
+  margin-left: -180px;
+  transform: rotate(-10deg);
+}
+.sprite-wraper .interrogacao-img.animado{
+  animation-name: interrogacao;
   animation-duration: 3s;
   animation-iteration-count: infinite;
 }
@@ -286,7 +310,8 @@ body {
 .sprite img {
   width: 500px;
   height: 500px;
-
+}
+.sprite img.animado {
   animation-name: pokemon;
   animation-duration: 5s;
 }
@@ -307,82 +332,9 @@ body {
 .sprite-controles button img {
   width: 40px;
   height: 40px;
-}
 
-/* --- RADIO --- */
-.radio-wraper {
-  width: 460px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  overflow: hidden;
-
-  border: 1px solid red;
-}
-.radio-icone {
-  width: fit-content;
-  height: fit-content;
-}
-.radio-icone i {
-  font-size: 70px;
-  color: #fff;
-
-  transform: rotate(-15deg);
-}
-.radio {
-  width: 100%;
-  padding: 3px 0;
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "img titulo"
-    "img controles";
-  overflow: hidden;
-
-  border-left: 2px solid #fff;
-  transition: 1s ease;
-}
-.radio img {
-  width: 120px;
-  height: 120px;
-  margin-left: 8px;
-  margin-right: 8px;
-
-  border-radius: 12px;
-
-  grid-area: img;
-}
-.musica-titulo {
-  width: 100%;
-  height: fit-content;
-  overflow-x: hidden;
-  margin-top: 22px;
-
-  grid-area: titulo;
-}
-.musica-titulo h2 {
-  font-size: 20px;
-  font-weight: normal;
-  color: #fff;
-}
-.radio-controles {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 15px;
-
-  grid-area: controles;
-}
-.radio-controles i{
-  font-size: 20px;
-  color: #fff;
-
-  cursor: pointer;
+  pointer-events: none;
+  animation-name: none;
 }
 
 /* --- TIPOS DE POKEMON ---*/
@@ -442,7 +394,10 @@ body {
 }
 
 /* --- ANIMAÇÕES --- */
-@keyframes engrenagem {
+@keyframes interrogacao {
+   50% {
+    transform: scale(120%);
+  }
 }
 
 @keyframes pokemon {

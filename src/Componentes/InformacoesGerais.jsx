@@ -75,7 +75,7 @@ function InformacoesGerais( {regiao} ) {
             statValor: kgs.toFixed(2),
             statTraducao: nomesStats.weight,
             statImg: weightIcon,
-            statComplemento: kgs > 1000 ? "Toneladas" : "Kg(s)",
+            statComplemento: "Kg(s)",
           },
         ];
 
